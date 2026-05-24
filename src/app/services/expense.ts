@@ -36,12 +36,24 @@ export class ExpenseService {
 
   }
 
+  getById(
+    id: string | number
+  ): Observable<Expense> {
+
+    return this.http.get<Expense>(
+      `${this.apiUrl}/${String(id)}`
+    ).pipe(
+      catchError(this.handleError)
+    );
+
+  }
+
   getByProperty(
-    propertyId: number
+    propertyId: string | number
   ): Observable<Expense[]> {
 
     return this.http.get<Expense[]>(
-      `${this.apiUrl}?propertyId=${propertyId}`
+      `${this.apiUrl}?propertyId=${String(propertyId)}`
     ).pipe(
       catchError(this.handleError)
     );
@@ -62,12 +74,12 @@ export class ExpenseService {
   }
 
   update(
-    id: number,
+    id: string | number,
     changes: Partial<Expense>
   ): Observable<Expense> {
 
     return this.http.patch<Expense>(
-      `${this.apiUrl}/${id}`,
+      `${this.apiUrl}/${String(id)}`,
       changes
     ).pipe(
       catchError(this.handleError)
@@ -76,11 +88,11 @@ export class ExpenseService {
   }
 
   delete(
-    id: number
+    id: string | number
   ): Observable<void> {
 
     return this.http.delete<void>(
-      `${this.apiUrl}/${id}`
+      `${this.apiUrl}/${String(id)}`
     ).pipe(
       catchError(this.handleError)
     );

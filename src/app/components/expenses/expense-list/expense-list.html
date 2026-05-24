@@ -15,6 +15,16 @@ mb-4">
 
 </div>
 
+<div class="card p-4 shadow-sm mb-4">
+
+  <h5>Total Expenses</h5>
+
+  <h2 class="text-danger">
+    ${{ totalExpenses }}
+  </h2>
+
+</div>
+
 <div class="mb-4">
 
   <select
@@ -93,13 +103,28 @@ mb-4">
 
       <td>
 
-        <button
-          class="btn btn-danger btn-sm"
-          (click)="deleteExpense(expense.id)">
+        <div class="d-flex gap-2">
 
-          Delete
+          <a
+            [routerLink]="[
+              '/expenses/edit',
+              expense.id
+            ]"
+            class="btn btn-warning btn-sm">
 
-        </button>
+            Edit
+
+          </a>
+
+          <button
+            class="btn btn-danger btn-sm"
+            (click)="deleteExpense(expense.id)">
+
+            Delete
+
+          </button>
+
+        </div>
 
       </td>
 

@@ -13,7 +13,8 @@ import {
 } from '@angular/forms';
 
 import {
-  Router
+  Router,
+  ActivatedRoute
 } from '@angular/router';
 
 import {
@@ -50,6 +51,10 @@ implements OnInit {
 
   errorMessage = '';
 
+  editMode = false;
+
+  expenseId: string = '';
+
   expense = {
 
     propertyId: '',
@@ -68,6 +73,7 @@ implements OnInit {
     private expenseService: ExpenseService,
     private propertyService: PropertyService,
     private router: Router,
+    private route: ActivatedRoute,
     private cd: ChangeDetectorRef
   ) {}
 
@@ -81,6 +87,43 @@ implements OnInit {
         this.cd.detectChanges();
 
       });
+
+    const id =
+      this.route.snapshot.paramMap.get('id');
+
+    if (id) {
+
+      this.editMode = true;
+
+      this.expenseId = id;
+
+      this.expenseService.getById(id)
+        .subscribe((data: any) => {
+
+          this.expense = {
+
+            propertyId:
+              data.propertyId || '',
+
+            type:
+              data.type || '',
+
+            description:
+              data.description || '',
+
+            amount:
+              data.amount || 0,
+
+            date:
+              data.date || ''
+
+          };
+
+          this.cd.detectChanges();
+
+        });
+
+    }
 
   }
 
@@ -98,32 +141,64 @@ implements OnInit {
 
     this.loading = true;
 
-    this.expenseService.create(
-      this.expense as any
-    ).subscribe({
+    if (this.editMode) {
 
-      next: () => {
+      this.expenseService.update(
+        this.expenseId,
+        this.expense as any
+      ).subscribe({
 
-        this.loading = false;
+        next: () => {
 
-        form.resetForm();
+          this.loading = false;
 
-        this.router.navigate([
-          '/expenses'
-        ]);
+          this.router.navigate([
+            '/expenses'
+          ]);
 
-      },
+        },
 
-      error: () => {
+        error: () => {
 
-        this.loading = false;
+          this.loading = false;
 
-        this.errorMessage =
-          'Failed to save expense';
+          this.errorMessage =
+            'Failed to update expense';
 
-      }
+        }
 
-    });
+      });
+
+    } else {
+
+      this.expenseService.create(
+        this.expense as any
+      ).subscribe({
+
+        next: () => {
+
+          this.loading = false;
+
+          form.resetForm();
+
+          this.router.navigate([
+            '/expenses'
+          ]);
+
+        },
+
+        error: () => {
+
+          this.loading = false;
+
+          this.errorMessage =
+            'Failed to save expense';
+
+        }
+
+      });
+
+    }
 
   }
 

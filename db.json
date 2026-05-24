@@ -18,9 +18,33 @@
       "name": "San Fernando Heights",
       "address": "123 St, San Fernando",
       "monthlyRent": 4100,
-      "status": "Vacant",
+      "status": "Occupied",
       "description": "Beautiful view of San Fernando Hill.",
       "id": "BkeVuBIGfCI"
+    },
+    {
+      "name": "3 Bedroom Apt. Couva",
+      "address": "McBean, Couva",
+      "monthlyRent": 5500,
+      "status": "Vacant",
+      "description": "",
+      "id": "d_NZcZgUTIM"
+    },
+    {
+      "name": "Brentwood Townshouse",
+      "address": "Brentwood",
+      "monthlyRent": 20000,
+      "status": "Occupied",
+      "description": "",
+      "id": "gJEwzGv5UQg"
+    },
+    {
+      "name": "Seaside Condo",
+      "address": "Port-of-Spain",
+      "monthlyRent": 45000,
+      "status": "Occupied",
+      "description": "",
+      "id": "ehP0eusNuxI"
     }
   ],
   "tenants": [
@@ -39,6 +63,30 @@
       "leaseStart": "2026-05-24",
       "leaseEnd": "2027-05-25",
       "id": "ncG4kUV40sM"
+    },
+    {
+      "name": "Jennie Kim",
+      "contact": "18689876543",
+      "propertyId": "ehP0eusNuxI",
+      "leaseStart": "2026-05-04",
+      "leaseEnd": "2027-05-07",
+      "id": "jhHjk6Qq1EM"
+    },
+    {
+      "name": "Ariana Grande",
+      "contact": "16789084444",
+      "propertyId": "gJEwzGv5UQg",
+      "leaseStart": "2026-05-11",
+      "leaseEnd": "2027-05-10",
+      "id": "fgUOe8V8Wac"
+    },
+    {
+      "name": "Iyo Sky",
+      "contact": "1234567890",
+      "propertyId": "BkeVuBIGfCI",
+      "leaseStart": "2026-03-25",
+      "leaseEnd": "2027-03-24",
+      "id": "92aEKb4tkuA"
     }
   ],
   "rentPayments": [
@@ -121,6 +169,46 @@
       "date": "2026-05-24",
       "status": "Paid",
       "id": "QeqLLDkMub4"
+    },
+    {
+      "propertyId": "ehP0eusNuxI",
+      "tenantId": "jhHjk6Qq1EM",
+      "amount": 45000,
+      "date": "2026-05-06",
+      "status": "Paid",
+      "id": "Hc9uyHljXYc"
+    },
+    {
+      "propertyId": "gJEwzGv5UQg",
+      "tenantId": "fgUOe8V8Wac",
+      "amount": 40000,
+      "date": "2026-05-12",
+      "status": "Paid",
+      "id": "Q-30ZJkktmc"
+    },
+    {
+      "propertyId": "BkeVuBIGfCI",
+      "tenantId": "92aEKb4tkuA",
+      "amount": 4100,
+      "date": "2026-03-25",
+      "status": "Paid",
+      "id": "xbnsw_Ip2iU"
+    },
+    {
+      "propertyId": "BkeVuBIGfCI",
+      "tenantId": "92aEKb4tkuA",
+      "amount": 4100,
+      "date": "2026-04-24",
+      "status": "Paid",
+      "id": "_iwuS6wh0BA"
+    },
+    {
+      "propertyId": "BkeVuBIGfCI",
+      "tenantId": "92aEKb4tkuA",
+      "amount": 4100,
+      "date": "2026-05-25",
+      "status": "Pending",
+      "id": "u6UYC0cN1LU"
     }
   ],
   "expenses": [
@@ -128,9 +216,33 @@
       "propertyId": "1",
       "type": "Maintenance",
       "description": "Repainted Walls",
-      "amount": 2500,
+      "amount": 3000,
       "date": "2025-07-25",
       "id": "TbWrO87pg_Q"
+    },
+    {
+      "propertyId": "2",
+      "type": "Renovation",
+      "description": "Renovate the kitchen for a modern look",
+      "amount": 15000,
+      "date": "2026-04-06",
+      "id": "BWlKe65_I80"
+    },
+    {
+      "propertyId": "ehP0eusNuxI",
+      "type": "Repairs",
+      "description": "Fix piping",
+      "amount": 2500,
+      "date": "2026-04-14",
+      "id": "QMDyZ4NFik4"
+    },
+    {
+      "propertyId": "gJEwzGv5UQg",
+      "type": "Maintenance",
+      "description": "Deep House Cleaning",
+      "amount": 3000,
+      "date": "2026-02-02",
+      "id": "IuvyD5HFAZg"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

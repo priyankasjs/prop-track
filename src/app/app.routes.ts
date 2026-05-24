@@ -93,6 +93,13 @@ export const routes: Routes = [
       .then(m => m.PaymentForm)
 },
 
+{
+  path: 'expenses/edit/:id',
+  loadComponent: () =>
+    import('./components/expenses/expense-form/expense-form')
+      .then(m => m.ExpenseForm)
+},
+
   {
   path: '**',
   loadComponent: () =>

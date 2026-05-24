@@ -40,6 +40,10 @@ implements OnInit {
 
   selectedProperty = '';
 
+  totalPaid = 0;
+
+  totalOutstanding = 0;
+
   constructor(
     private paymentService: PaymentService,
     private cd: ChangeDetectorRef
@@ -59,6 +63,8 @@ implements OnInit {
         this.payments = data;
 
         this.filteredPayments = data;
+
+        this.calculateTotals();
 
         this.cd.detectChanges();
 
@@ -85,6 +91,44 @@ implements OnInit {
         );
 
     }
+
+    this.calculateTotals();
+
+  }
+
+  calculateTotals(): void {
+
+    this.totalPaid =
+      this.filteredPayments
+        .filter(
+          (payment: any) =>
+            payment.status === 'Paid'
+        )
+        .reduce(
+          (
+            sum: number,
+            payment: any
+          ) =>
+            sum +
+            Number(payment.amount),
+          0
+        );
+
+    this.totalOutstanding =
+      this.filteredPayments
+        .filter(
+          (payment: any) =>
+            payment.status !== 'Paid'
+        )
+        .reduce(
+          (
+            sum: number,
+            payment: any
+          ) =>
+            sum +
+            Number(payment.amount),
+          0
+        );
 
   }
 
