@@ -36,12 +36,24 @@ export class TenantService {
 
   }
 
+  getById(
+    id: string | number
+  ): Observable<Tenant> {
+
+    return this.http.get<Tenant>(
+      `${this.apiUrl}/${String(id)}`
+    ).pipe(
+      catchError(this.handleError)
+    );
+
+  }
+
   getByProperty(
-    propertyId: number
+    propertyId: string | number
   ): Observable<Tenant[]> {
 
     return this.http.get<Tenant[]>(
-      `${this.apiUrl}?propertyId=${propertyId}`
+      `${this.apiUrl}?propertyId=${String(propertyId)}`
     ).pipe(
       catchError(this.handleError)
     );
@@ -62,12 +74,12 @@ export class TenantService {
   }
 
   update(
-    id: number,
+    id: string | number,
     changes: Partial<Tenant>
   ): Observable<Tenant> {
 
     return this.http.patch<Tenant>(
-      `${this.apiUrl}/${id}`,
+      `${this.apiUrl}/${String(id)}`,
       changes
     ).pipe(
       catchError(this.handleError)
@@ -76,11 +88,11 @@ export class TenantService {
   }
 
   delete(
-    id: number
+    id: string | number
   ): Observable<void> {
 
     return this.http.delete<void>(
-      `${this.apiUrl}/${id}`
+      `${this.apiUrl}/${String(id)}`
     ).pipe(
       catchError(this.handleError)
     );

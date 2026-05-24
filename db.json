@@ -12,7 +12,7 @@
       "name": "Valsayn Townhouse",
       "address": "7 Churchill Roosevelt Hwy, Valsayn",
       "monthlyRent": 6000,
-      "status": "Vacant"
+      "status": "Occupied"
     },
     {
       "name": "San Fernando Heights",
@@ -26,11 +26,19 @@
   "tenants": [
     {
       "name": "Jane Doe",
-      "contact": "18684445555",
+      "contact": "18684445559",
       "propertyId": "1",
       "leaseStart": "2025-05-15",
       "leaseEnd": "2026-05-25",
       "id": "hNjmh5Mwvgg"
+    },
+    {
+      "name": "John Doe",
+      "contact": "18689990876",
+      "propertyId": "2",
+      "leaseStart": "2026-05-24",
+      "leaseEnd": "2027-05-25",
+      "id": "ncG4kUV40sM"
     }
   ],
   "rentPayments": [
@@ -105,6 +113,14 @@
       "date": "2026-04-20",
       "status": "Paid",
       "id": "Us8fSmCc7RU"
+    },
+    {
+      "propertyId": "2",
+      "tenantId": "ncG4kUV40sM",
+      "amount": 12000,
+      "date": "2026-05-24",
+      "status": "Paid",
+      "id": "QeqLLDkMub4"
     }
   ],
   "expenses": [

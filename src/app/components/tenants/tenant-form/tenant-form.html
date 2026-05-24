@@ -1,8 +1,13 @@
 <div class="card p-4 shadow-sm">
 
   <h2 class="mb-4">
-    Add Tenant
-  </h2>
+
+  {{ editMode
+    ? 'Edit Tenant'
+    : 'Add Tenant'
+  }}
+
+</h2>
 
   <form
     [formGroup]="tenantForm"

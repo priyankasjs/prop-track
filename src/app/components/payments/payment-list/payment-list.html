@@ -15,6 +15,17 @@ mb-4">
 
 </div>
 
+<div class="mb-4">
+
+  <input
+    type="text"
+    class="form-control w-25"
+    placeholder="Filter by Prop. ID"
+    [(ngModel)]="selectedProperty"
+    (input)="filterPayments()">
+
+</div>
+
 <table class="table table-striped">
 
   <thead>
@@ -41,7 +52,7 @@ mb-4">
 
     <tr
       *ngFor="
-        let payment of payments
+        let payment of filteredPayments
       ">
 
       <td>

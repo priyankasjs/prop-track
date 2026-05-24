@@ -66,13 +66,28 @@ mb-4">
 
       <td>
 
-        <button
-          class="btn btn-danger btn-sm"
-          (click)="deleteTenant(tenant.id)">
+        <div class="d-flex gap-2">
 
-          Delete
+          <a
+            [routerLink]="[
+              '/tenants/edit',
+              tenant.id
+            ]"
+            class="btn btn-warning btn-sm">
 
-        </button>
+            Edit
+
+          </a>
+
+          <button
+            class="btn btn-danger btn-sm"
+            (click)="deleteTenant(tenant.id)">
+
+            Delete
+
+          </button>
+
+        </div>
 
       </td>
 

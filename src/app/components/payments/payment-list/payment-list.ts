@@ -9,6 +9,10 @@ import {
 } from '@angular/common';
 
 import {
+  FormsModule
+} from '@angular/forms';
+
+import {
   RouterLink
 } from '@angular/router';
 
@@ -21,6 +25,7 @@ import {
   standalone: true,
   imports: [
     CommonModule,
+    FormsModule,
     RouterLink
   ],
   templateUrl: './payment-list.html',
@@ -30,6 +35,10 @@ export class PaymentList
 implements OnInit {
 
   payments: any[] = [];
+
+  filteredPayments: any[] = [];
+
+  selectedProperty = '';
 
   constructor(
     private paymentService: PaymentService,
@@ -49,14 +58,38 @@ implements OnInit {
 
         this.payments = data;
 
+        this.filteredPayments = data;
+
         this.cd.detectChanges();
 
       });
 
   }
 
+  filterPayments(): void {
+
+    if (!this.selectedProperty) {
+
+      this.filteredPayments =
+        this.payments;
+
+    } else {
+
+      this.filteredPayments =
+        this.payments.filter(
+          (payment: any) =>
+            String(
+              payment.propertyId
+            ) ===
+            this.selectedProperty
+        );
+
+    }
+
+  }
+
   deletePayment(
-    id: number
+    id: string | number
   ): void {
 
     const confirmDelete =

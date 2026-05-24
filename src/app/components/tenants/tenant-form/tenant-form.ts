@@ -15,7 +15,8 @@ import {
 } from '@angular/forms';
 
 import {
-  Router
+  Router,
+  ActivatedRoute
 } from '@angular/router';
 
 import {
@@ -49,6 +50,10 @@ implements OnInit {
 
   errorMessage = '';
 
+  editMode = false;
+
+  tenantId: string = '';
+
   tenantForm: any;
 
   constructor(
@@ -56,6 +61,7 @@ implements OnInit {
     private tenantService: TenantService,
     private propertyService: PropertyService,
     private router: Router,
+    private route: ActivatedRoute,
     private cd: ChangeDetectorRef
   ) {
 
@@ -96,13 +102,48 @@ implements OnInit {
     this.propertyService.getAll()
       .subscribe((data: any) => {
 
-        console.log(data);
-
         this.properties = data;
 
         this.cd.detectChanges();
 
       });
+
+    const id =
+      this.route.snapshot.paramMap.get('id');
+
+    if (id) {
+
+      this.editMode = true;
+
+      this.tenantId = id;
+
+      this.tenantService.getById(id)
+        .subscribe((data: any) => {
+
+          this.tenantForm.setValue({
+
+            name:
+              data.name || '',
+
+            contact:
+              data.contact || '',
+
+            propertyId:
+              data.propertyId || '',
+
+            leaseStart:
+              data.leaseStart || '',
+
+            leaseEnd:
+              data.leaseEnd || ''
+
+          });
+
+          this.cd.detectChanges();
+
+        });
+
+    }
 
   }
 
@@ -120,43 +161,75 @@ implements OnInit {
 
     this.loading = true;
 
-    this.tenantService.create(
-      this.tenantForm.value
-    ).subscribe({
+    if (this.editMode) {
 
-      next: () => {
+      this.tenantService.update(
+        this.tenantId,
+        this.tenantForm.value
+      ).subscribe({
 
-        const propertyId =
-          this.tenantForm.value.propertyId;
+        next: () => {
 
-        this.propertyService.update(
-          propertyId,
-          {
-            status:
-              PropertyStatus.Occupied
-          }
-        ).subscribe();
+          this.loading = false;
 
-        this.loading = false;
+          this.router.navigate([
+            '/tenants'
+          ]);
 
-        this.tenantForm.reset();
+        },
 
-        this.router.navigate([
-          '/tenants'
-        ]);
+        error: () => {
 
-      },
+          this.loading = false;
 
-      error: () => {
+          this.errorMessage =
+            'Failed to update tenant';
 
-        this.loading = false;
+        }
 
-        this.errorMessage =
-          'Failed to save tenant';
+      });
 
-      }
+    } else {
 
-    });
+      this.tenantService.create(
+        this.tenantForm.value
+      ).subscribe({
+
+        next: () => {
+
+          const propertyId =
+            this.tenantForm.value.propertyId;
+
+          this.propertyService.update(
+            propertyId,
+            {
+              status:
+                PropertyStatus.Occupied
+            }
+          ).subscribe();
+
+          this.loading = false;
+
+          this.tenantForm.reset();
+
+          this.router.navigate([
+            '/tenants'
+          ]);
+
+        },
+
+        error: () => {
+
+          this.loading = false;
+
+          this.errorMessage =
+            'Failed to save tenant';
+
+        }
+
+      });
+
+    }
 
   }
 

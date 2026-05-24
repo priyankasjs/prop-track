@@ -80,10 +80,17 @@ export const routes: Routes = [
   },
 
   {
-    path: '**',
-    loadComponent: () =>
-      import('./components/not-found/not-found')
-        .then(m => m.NotFound)
-  }
+  path: 'tenants/edit/:id',
+  loadComponent: () =>
+    import('./components/tenants/tenant-form/tenant-form')
+      .then(m => m.TenantForm)
+},
+
+  {
+  path: '**',
+  loadComponent: () =>
+    import('./components/not-found/not-found')
+      .then(m => m.NotFound)
+}
 
 ];
