@@ -86,6 +86,13 @@ export const routes: Routes = [
       .then(m => m.TenantForm)
 },
 
+{
+  path: 'payments/edit/:id',
+  loadComponent: () =>
+    import('./components/payments/payment-form/payment-form')
+      .then(m => m.PaymentForm)
+},
+
   {
   path: '**',
   loadComponent: () =>
