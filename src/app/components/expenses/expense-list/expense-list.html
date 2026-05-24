@@ -1,1 +1,31 @@
-<p>expense-list works!</p>
+<h2 class="mb-4">Expenses</h2>
+
+<table class="table table-striped">
+
+  <thead>
+
+    <tr>
+      <th>Property ID</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Amount</th>
+      <th>Date</th>
+    </tr>
+
+  </thead>
+
+  <tbody>
+
+    <tr *ngFor="let expense of expenses">
+
+      <td>{{ expense.propertyId }}</td>
+      <td>{{ expense.type }}</td>
+      <td>{{ expense.description }}</td>
+      <td>${{ expense.amount }}</td>
+      <td>{{ expense.date }}</td>
+
+    </tr>
+
+  </tbody>
+
+</table>

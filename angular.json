@@ -3,7 +3,7 @@
   "version": 1,
   "cli": {
     "packageManager": "npm",
-    "analytics": "2acd0944-3151-4f99-834e-75b607ead909"
+    "analytics": "5b26510f-d27b-4ac1-87e2-72f3c6a5d23f"
   },
   "newProjectRoot": "projects",
   "projects": {
@@ -18,71 +18,96 @@
       "sourceRoot": "src",
       "prefix": "app",
       "architect": {
+
         "build": {
           "builder": "@angular/build:application",
+
           "options": {
+
             "browser": "src/main.ts",
+
             "tsConfig": "tsconfig.app.json",
+
             "inlineStyleLanguage": "scss",
+
             "assets": [
               {
                 "glob": "**/*",
                 "input": "public"
               }
             ],
+
             "styles": [
-  "node_modules/bootstrap/dist/css/bootstrap.min.css",
-  "src/styles.scss"
-],
-            "server": "src/main.server.ts",
-            "outputMode": "server",
-            "security": {
-              "allowedHosts": []
-            },
-            "ssr": {
-              "entry": "src/server.ts"
-            }
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/styles.scss"
+            ]
+
           },
+
           "configurations": {
+
             "production": {
+
               "budgets": [
                 {
                   "type": "initial",
                   "maximumWarning": "500kB",
                   "maximumError": "1MB"
                 },
+
                 {
                   "type": "anyComponentStyle",
                   "maximumWarning": "4kB",
                   "maximumError": "8kB"
                 }
               ],
+
               "outputHashing": "all"
+
             },
+
             "development": {
+
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
+
             }
+
           },
-          "defaultConfiguration": "production"
+
+          "defaultConfiguration": "development"
+
         },
+
         "serve": {
+
           "builder": "@angular/build:dev-server",
+
           "configurations": {
+
             "production": {
               "buildTarget": "prop-track:build:production"
             },
+
             "development": {
               "buildTarget": "prop-track:build:development"
             }
+
           },
+
           "defaultConfiguration": "development"
+
         },
+
         "test": {
           "builder": "@angular/build:unit-test"
         }
+
       }
+
     }
+
   }
+
 }

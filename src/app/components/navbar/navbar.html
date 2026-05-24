@@ -1,1 +1,67 @@
-<p>navbar works!</p>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4">
+
+  <a class="navbar-brand fw-bold">
+    PropTrack
+  </a>
+
+  <ul class="navbar-nav ms-auto">
+
+    <li class="nav-item">
+      <a
+        routerLink="/"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="nav-link">
+
+        Dashboard
+
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a
+        routerLink="/properties"
+        routerLinkActive="active"
+        class="nav-link">
+
+        Properties
+
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a
+        routerLink="/tenants"
+        routerLinkActive="active"
+        class="nav-link">
+
+        Tenants
+
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a
+        routerLink="/payments"
+        routerLinkActive="active"
+        class="nav-link">
+
+        Payments
+
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a
+        routerLink="/expenses"
+        routerLinkActive="active"
+        class="nav-link">
+
+        Expenses
+
+      </a>
+    </li>
+
+  </ul>
+
+</nav>

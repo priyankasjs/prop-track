@@ -1,21 +1,112 @@
 {
   "properties": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Sunrise Apartments Unit 3",
       "address": "12 Eastern Main Road, Tunapuna",
       "monthlyRent": 4500,
       "status": "Occupied"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Valsayn Townhouse",
       "address": "7 Churchill Roosevelt Hwy, Valsayn",
       "monthlyRent": 6000,
       "status": "Vacant"
+    },
+    {
+      "name": "San Fernando Heights",
+      "address": "123 St., San Fernando",
+      "monthlyRent": 4500,
+      "status": "Vacant",
+      "description": "Beautiful View of the San Feranado Hill.",
+      "id": "hgK-URwqpNY"
     }
   ],
-  "tenants": [],
-  "rentPayments": [],
-  "expenses": []
+  "tenants": [
+    {
+      "name": "Jane Doe",
+      "contact": "18684445555",
+      "propertyId": "1",
+      "leaseStart": "2025-05-15",
+      "leaseEnd": "2026-05-25",
+      "id": "hNjmh5Mwvgg"
+    }
+  ],
+  "rentPayments": [
+    {
+      "propertyId": "1",
+      "tenantId": "hNjmh5Mwvgg",
+      "amount": 4500,
+      "date": "2025-06-15",
+      "status": "Paid",
+      "id": "p0tDNtUfn7s"
+    },
+    {
+      "propertyId": "1",
+      "tenantId": "hNjmh5Mwvgg",
+      "amount": 4500,
+      "date": "2025-07-15",
+      "status": "Paid",
+      "id": "aaN25Sfwss8"
+    },
+    {
+      "propertyId": "1",
+      "tenantId": "hNjmh5Mwvgg",
+      "amount": 4500,
+      "date": "2025-08-15",
+      "status": "Paid",
+      "id": "G487nXrfTjA"
+    },
+    {
+      "propertyId": "1",
+      "tenantId": "hNjmh5Mwvgg",
+      "amount": 9000,
+      "date": "2025-09-15",
+      "status": "Paid",
+      "id": "BdL7wsW6QfU"
+    },
+    {
+      "propertyId": "1",
+      "tenantId": "hNjmh5Mwvgg",
+      "amount": 9000,
+      "date": "2025-11-15",
+      "status": "Paid",
+      "id": "Yfdmow-WrJE"
+    },
+    {
+      "propertyId": "1",
+      "tenantId": "hNjmh5Mwvgg",
+      "amount": 4500,
+      "date": "2026-01-15",
+      "status": "Paid",
+      "id": "o5ndLJHx-3U"
+    },
+    {
+      "propertyId": "1",
+      "tenantId": "hNjmh5Mwvgg",
+      "amount": 4500,
+      "date": "2026-02-15",
+      "status": "Paid",
+      "id": "0IhqLMfowFE"
+    },
+    {
+      "propertyId": "1",
+      "tenantId": "hNjmh5Mwvgg",
+      "amount": 4500,
+      "date": "2026-03-15",
+      "status": "Paid",
+      "id": "bML4fqBwpF0"
+    },
+    {
+      "propertyId": "1",
+      "tenantId": "hNjmh5Mwvgg",
+      "amount": 4500,
+      "date": "2026-04-20",
+      "status": "Paid",
+      "id": "Us8fSmCc7RU"
+    }
+  ],
+  "expenses": [],
+  "$schema": "./node_modules/json-server/schema.json"
 }

@@ -1,1 +1,165 @@
-<p>tenant-form works!</p>
+<div class="card p-4 shadow-sm">
+
+  <h2 class="mb-4">
+    Add Tenant
+  </h2>
+
+  <form
+    [formGroup]="tenantForm"
+    (ngSubmit)="onSubmit()">
+
+    <div class="mb-3">
+
+      <label class="form-label">
+        Full Name
+      </label>
+
+      <input
+        type="text"
+        class="form-control"
+        formControlName="name">
+
+      <small
+        class="text-danger"
+        *ngIf="
+          tenantForm.controls.name.touched &&
+          tenantForm.controls.name.invalid
+        ">
+
+        Name is required
+
+      </small>
+
+    </div>
+
+    <div class="mb-3">
+
+      <label class="form-label">
+        Contact
+      </label>
+
+      <input
+        type="text"
+        class="form-control"
+        formControlName="contact">
+
+      <small
+        class="text-danger"
+        *ngIf="
+          tenantForm.controls.contact.touched &&
+          tenantForm.controls.contact.invalid
+        ">
+
+        Contact is required
+
+      </small>
+
+    </div>
+
+    <div class="mb-3">
+
+      <label class="form-label">
+        Property
+      </label>
+
+      <select
+        class="form-select"
+        formControlName="propertyId">
+
+        <option value="">
+          Select Property
+        </option>
+
+        <option
+          *ngFor="
+            let property of properties
+          "
+          [value]="property.id">
+
+          {{ property.name }}
+
+        </option>
+
+      </select>
+
+      <small
+        class="text-danger"
+        *ngIf="
+          tenantForm.controls.propertyId.touched &&
+          tenantForm.controls.propertyId.invalid
+        ">
+
+        Property is required
+
+      </small>
+
+    </div>
+
+    <div class="mb-3">
+
+      <label class="form-label">
+        Lease Start
+      </label>
+
+      <input
+        type="date"
+        class="form-control"
+        formControlName="leaseStart">
+
+      <small
+        class="text-danger"
+        *ngIf="
+          tenantForm.controls.leaseStart.touched &&
+          tenantForm.controls.leaseStart.invalid
+        ">
+
+        Lease start is required
+
+      </small>
+
+    </div>
+
+    <div class="mb-3">
+
+      <label class="form-label">
+        Lease End
+      </label>
+
+      <input
+        type="date"
+        class="form-control"
+        formControlName="leaseEnd">
+
+      <small
+        class="text-danger"
+        *ngIf="
+          tenantForm.controls.leaseEnd.touched &&
+          tenantForm.controls.leaseEnd.invalid
+        ">
+
+        Lease end is required
+
+      </small>
+
+    </div>
+
+    <button
+      class="btn btn-dark"
+      type="submit"
+      [disabled]="tenantForm.invalid">
+
+      Save Tenant
+
+    </button>
+
+    <p
+      class="text-danger mt-3"
+      *ngIf="errorMessage">
+
+      {{ errorMessage }}
+
+    </p>
+
+  </form>
+
+</div>

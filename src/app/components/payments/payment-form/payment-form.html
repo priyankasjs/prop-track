@@ -1,1 +1,140 @@
-<p>payment-form works!</p>
+<div class="card p-4 shadow-sm">
+
+  <h2 class="mb-4">
+    Add Payment
+  </h2>
+
+  <form
+    [formGroup]="paymentForm"
+    (ngSubmit)="onSubmit()">
+
+    <div class="mb-3">
+
+      <label class="form-label">
+        Property
+      </label>
+
+      <select
+        class="form-select"
+        formControlName="propertyId">
+
+        <option value="">
+          Select Property
+        </option>
+
+        <option
+          *ngFor="
+            let property of properties
+          "
+          [value]="property.id">
+
+          {{ property.name }}
+
+        </option>
+
+      </select>
+
+    </div>
+
+    <div class="mb-3">
+
+      <label class="form-label">
+        Tenant
+      </label>
+
+      <select
+        class="form-select"
+        formControlName="tenantId">
+
+        <option value="">
+          Select Tenant
+        </option>
+
+        <option
+          *ngFor="
+            let tenant of tenants
+          "
+          [value]="tenant.id">
+
+          {{ tenant.name }}
+
+        </option>
+
+      </select>
+
+    </div>
+
+    <div class="mb-3">
+
+      <label class="form-label">
+        Amount
+      </label>
+
+      <input
+        type="number"
+        class="form-control"
+        formControlName="amount">
+
+    </div>
+
+    <div class="mb-3">
+
+      <label class="form-label">
+        Payment Date
+      </label>
+
+      <input
+        type="date"
+        class="form-control"
+        formControlName="date">
+
+    </div>
+
+    <div class="mb-3">
+
+      <label class="form-label">
+        Status
+      </label>
+
+      <select
+        class="form-select"
+        formControlName="status">
+
+        <option value="">
+          Select Status
+        </option>
+
+        <option
+          *ngFor="
+            let status of statuses
+          "
+          [value]="status">
+
+          {{ status }}
+
+        </option>
+
+      </select>
+
+    </div>
+
+    <button
+      class="btn btn-dark"
+      type="submit"
+      [disabled]="paymentForm.invalid">
+
+      Save Payment
+
+    </button>
+
+    <p
+      class="text-danger mt-3"
+      *ngIf="errorMessage">
+
+      {{ errorMessage }}
+
+    </p>
+
+  </form>
+
+</div>

@@ -1,1 +1,100 @@
-<p>payment-list works!</p>
+<div class="d-flex
+justify-content-between
+align-items-center
+mb-4">
+
+  <h2>Payments</h2>
+
+  <a
+    routerLink="/payments/add"
+    class="btn btn-dark">
+
+    Add Payment
+
+  </a>
+
+</div>
+
+<table class="table table-striped">
+
+  <thead>
+
+    <tr>
+
+      <th>Property ID</th>
+
+      <th>Tenant ID</th>
+
+      <th>Amount</th>
+
+      <th>Date</th>
+
+      <th>Status</th>
+
+      <th>Actions</th>
+
+    </tr>
+
+  </thead>
+
+  <tbody>
+
+    <tr
+      *ngFor="
+        let payment of payments
+      ">
+
+      <td>
+        {{ payment.propertyId }}
+      </td>
+
+      <td>
+        {{ payment.tenantId }}
+      </td>
+
+      <td>
+        ${{ payment.amount }}
+      </td>
+
+      <td>
+        {{ payment.date }}
+      </td>
+
+      <td>
+
+        <span
+          class="badge"
+          [ngClass]="{
+            'bg-success':
+              payment.status === 'Paid',
+
+            'bg-warning':
+              payment.status === 'Pending',
+
+            'bg-danger':
+              payment.status === 'Late'
+          }">
+
+          {{ payment.status }}
+
+        </span>
+
+      </td>
+
+      <td>
+
+        <button
+          class="btn btn-danger btn-sm"
+          (click)="deletePayment(payment.id)">
+
+          Delete
+
+        </button>
+
+      </td>
+
+    </tr>
+
+  </tbody>
+
+</table>

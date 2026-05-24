@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-property-detail',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './property-detail.html',
-  styleUrl: './property-detail.scss',
+  styleUrls: ['./property-detail.scss']
 })
-export class PropertyDetail {}
+export class PropertyDetail {
+
+}

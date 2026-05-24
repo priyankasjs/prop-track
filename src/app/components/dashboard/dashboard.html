@@ -1,1 +1,87 @@
-<p>dashboard works!</p>
+<div *ngIf="loading" class="text-center mt-5">
+
+  <h2>Loading Dashboard...</h2>
+
+</div>
+
+<div *ngIf="!loading">
+
+  <h1 class="mb-4">Dashboard</h1>
+
+  <div class="row g-4">
+
+    <div class="col-md-4">
+
+      <div class="card p-4 shadow-sm">
+
+        <h5>Total Properties</h5>
+
+        <h2>{{ totalProperties }}</h2>
+
+      </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+      <div class="card p-4 shadow-sm">
+
+        <h5>Occupied Properties</h5>
+
+        <h2>{{ occupiedProperties }}</h2>
+
+      </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+      <div class="card p-4 shadow-sm">
+
+        <h5>Active Tenants</h5>
+
+        <h2>{{ activeTenants }}</h2>
+
+      </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+      <div class="card p-4 shadow-sm">
+
+        <h5>Rent Collected</h5>
+
+        <h2>${{ totalRentCollected }}</h2>
+
+      </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+      <div class="card p-4 shadow-sm">
+
+        <h5>Total Expenses</h5>
+
+        <h2>${{ totalExpenses }}</h2>
+
+      </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+      <div class="card p-4 shadow-sm">
+
+        <h5>Net Income</h5>
+
+        <h2>${{ netIncome }}</h2>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

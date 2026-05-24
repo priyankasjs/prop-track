@@ -1,1 +1,40 @@
-<p>property-list works!</p>
+<h1 class="mb-4">Properties</h1>
+
+<a
+  routerLink="/properties/add"
+  class="btn btn-dark mb-4">
+
+  Add Property
+
+</a>
+
+<div class="row">
+
+  <div
+    class="col-md-4 mb-4"
+    *ngFor="let property of properties">
+
+    <div class="card p-3 shadow-sm">
+
+      <h4>{{ property.name }}</h4>
+
+      <p>{{ property.address }}</p>
+
+      <h5>${{ property.monthlyRent }}</h5>
+
+      <span
+        class="badge"
+        [ngClass]="{
+          'bg-success': property.status === 'Occupied',
+          'bg-danger': property.status === 'Vacant'
+        }">
+
+        {{ property.status }}
+
+      </span>
+
+    </div>
+
+  </div>
+
+</div>
