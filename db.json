@@ -1,0 +1,21 @@
+{
+  "properties": [
+    {
+      "id": 1,
+      "name": "Sunrise Apartments Unit 3",
+      "address": "12 Eastern Main Road, Tunapuna",
+      "monthlyRent": 4500,
+      "status": "Occupied"
+    },
+    {
+      "id": 2,
+      "name": "Valsayn Townhouse",
+      "address": "7 Churchill Roosevelt Hwy, Valsayn",
+      "monthlyRent": 6000,
+      "status": "Vacant"
+    }
+  ],
+  "tenants": [],
+  "rentPayments": [],
+  "expenses": []
+}
