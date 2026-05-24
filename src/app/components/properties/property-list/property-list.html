@@ -1,37 +1,89 @@
-<h1 class="mb-4">Properties</h1>
+<div class="d-flex
+justify-content-between
+align-items-center
+mb-4">
 
-<a
-  routerLink="/properties/add"
-  class="btn btn-dark mb-4">
+  <h2>Properties</h2>
 
-  Add Property
+  <a
+    routerLink="/properties/add"
+    class="btn btn-dark">
 
-</a>
+    Add Property
+
+  </a>
+
+</div>
 
 <div class="row">
 
   <div
     class="col-md-4 mb-4"
-    *ngFor="let property of properties">
+    *ngFor="
+      let property of properties
+    ">
 
-    <div class="card p-3 shadow-sm">
+    <div class="card p-4 shadow-sm h-100">
 
-      <h4>{{ property.name }}</h4>
+      <h4>
+        {{ property.name }}
+      </h4>
 
-      <p>{{ property.address }}</p>
+      <p>
+        {{ property.address }}
+      </p>
 
-      <h5>${{ property.monthlyRent }}</h5>
+      <h5>
+        ${{ property.monthlyRent }}
+      </h5>
 
       <span
-        class="badge"
+        class="badge mb-3"
         [ngClass]="{
-          'bg-success': property.status === 'Occupied',
-          'bg-danger': property.status === 'Vacant'
+          'bg-success':
+            property.status === 'Occupied',
+
+          'bg-danger':
+            property.status === 'Vacant'
         }">
 
         {{ property.status }}
 
       </span>
+
+      <div class="d-flex gap-2">
+
+        <a
+          [routerLink]="[
+            '/properties',
+            property.id
+          ]"
+          class="btn btn-primary btn-sm">
+
+          View
+
+        </a>
+
+        <a
+          [routerLink]="[
+            '/properties/edit',
+            property.id
+          ]"
+          class="btn btn-warning btn-sm">
+
+          Edit
+
+        </a>
+
+        <button
+          class="btn btn-danger btn-sm"
+          (click)="deleteProperty(property.id)">
+
+          Delete
+
+        </button>
+
+      </div>
 
     </div>
 

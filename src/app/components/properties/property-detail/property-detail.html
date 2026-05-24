@@ -1,1 +1,204 @@
-<h1>Property Detail Working ✅</h1>
+<div *ngIf="loading">
+
+  <h2>Loading...</h2>
+
+</div>
+
+<div *ngIf="!loading && property">
+
+  <div class="d-flex
+  justify-content-between
+  align-items-center
+  mb-4">
+
+    <h1>
+      {{ property.name }}
+    </h1>
+
+    <a
+      routerLink="/properties"
+      class="btn btn-secondary">
+
+      Back
+
+    </a>
+
+  </div>
+
+  <div class="card p-4 shadow-sm mb-4">
+
+    <h4>Property Information</h4>
+
+    <hr>
+
+    <p>
+      <strong>Address:</strong>
+      {{ property.address }}
+    </p>
+
+    <p>
+      <strong>Monthly Rent:</strong>
+      ${{ property.monthlyRent }}
+    </p>
+
+    <p>
+      <strong>Status:</strong>
+
+      <span
+        class="badge"
+        [ngClass]="{
+          'bg-success':
+            property.status === 'Occupied',
+
+          'bg-danger':
+            property.status === 'Vacant'
+        }">
+
+        {{ property.status }}
+
+      </span>
+
+    </p>
+
+    <p>
+      <strong>Description:</strong>
+      {{ property.description }}
+    </p>
+
+  </div>
+
+  <div class="row">
+
+    <div class="col-md-4">
+
+      <div class="card p-3 shadow-sm mb-4">
+
+        <h4>Tenants</h4>
+
+        <hr>
+
+        <div
+          *ngFor="
+            let tenant of tenants
+          "
+          class="mb-3">
+
+          <h6>
+            {{ tenant.name }}
+          </h6>
+
+          <p>
+            {{ tenant.contact }}
+          </p>
+
+        </div>
+
+        <p
+          *ngIf="tenants.length === 0">
+
+          No tenants assigned.
+
+        </p>
+
+      </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+      <div class="card p-3 shadow-sm mb-4">
+
+        <h4>Payments</h4>
+
+        <hr>
+
+        <div
+          *ngFor="
+            let payment of payments
+          "
+          class="mb-3">
+
+          <p>
+            <strong>
+              ${{ payment.amount }}
+            </strong>
+          </p>
+
+          <p>
+            {{ payment.date }}
+          </p>
+
+          <span
+            class="badge"
+            [ngClass]="{
+              'bg-success':
+                payment.status === 'Paid',
+
+              'bg-warning':
+                payment.status === 'Pending',
+
+              'bg-danger':
+                payment.status === 'Late'
+            }">
+
+            {{ payment.status }}
+
+          </span>
+
+        </div>
+
+        <p
+          *ngIf="payments.length === 0">
+
+          No payments found.
+
+        </p>
+
+      </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+      <div class="card p-3 shadow-sm mb-4">
+
+        <h4>Expenses</h4>
+
+        <hr>
+
+        <div
+          *ngFor="
+            let expense of expenses
+          "
+          class="mb-3">
+
+          <p>
+            <strong>
+              {{ expense.type }}
+            </strong>
+          </p>
+
+          <p>
+            ${{ expense.amount }}
+          </p>
+
+          <p>
+            {{ expense.date }}
+          </p>
+
+        </div>
+
+        <p
+          *ngIf="expenses.length === 0">
+
+          No expenses found.
+
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

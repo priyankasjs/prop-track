@@ -5,8 +5,8 @@ import {
 } from '@angular/common/http';
 
 import {
-  catchError,
   Observable,
+  catchError,
   throwError
 } from 'rxjs';
 
@@ -37,7 +37,7 @@ export class PropertyService {
   }
 
   getById(
-    id: number
+    id: string | number
   ): Observable<Property> {
 
     return this.http.get<Property>(
@@ -62,7 +62,7 @@ export class PropertyService {
   }
 
   update(
-    id: number,
+    id: string | number,
     changes: Partial<Property>
   ): Observable<Property> {
 
@@ -76,7 +76,7 @@ export class PropertyService {
   }
 
   delete(
-    id: number
+    id: string | number
   ): Observable<void> {
 
     return this.http.delete<void>(
@@ -91,10 +91,7 @@ export class PropertyService {
     error: any
   ) {
 
-    console.error(
-      'API Error:',
-      error
-    );
+    console.error(error);
 
     return throwError(
       () => new Error(

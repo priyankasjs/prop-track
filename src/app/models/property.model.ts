@@ -8,7 +8,7 @@ export enum PropertyStatus {
 
 export interface Property {
 
-  id: number;
+  id: string | number;
 
   name: string;
 

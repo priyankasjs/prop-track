@@ -23,6 +23,13 @@ export const routes: Routes = [
       .then(m => m.PropertyForm)
 },
 
+{
+  path: 'properties/edit/:id',
+  loadComponent: () =>
+    import('./components/properties/property-form/property-form')
+      .then(m => m.PropertyForm)
+},
+
   {
     path: 'properties/:id',
     loadComponent: () =>
@@ -57,6 +64,13 @@ export const routes: Routes = [
       import('./components/payments/payment-list/payment-list')
         .then(m => m.PaymentList)
   },
+
+  {
+  path: 'expenses/add',
+  loadComponent: () =>
+    import('./components/expenses/expense-form/expense-form')
+      .then(m => m.ExpenseForm)
+},
 
   {
     path: 'expenses',

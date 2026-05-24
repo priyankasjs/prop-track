@@ -1,5 +1,7 @@
 import {
-  Component
+  Component,
+  OnInit,
+  ChangeDetectorRef
 } from '@angular/core';
 
 import {
@@ -13,7 +15,8 @@ import {
 } from '@angular/forms';
 
 import {
-  Router
+  Router,
+  ActivatedRoute
 } from '@angular/router';
 
 import {
@@ -34,22 +37,30 @@ import {
   templateUrl: './property-form.html',
   styleUrls: ['./property-form.scss']
 })
-export class PropertyForm {
+export class PropertyForm
+implements OnInit {
 
-  statuses = Object.values(
-    PropertyStatus
-  );
+  statuses =
+    Object.values(
+      PropertyStatus
+    );
 
   loading = false;
 
   errorMessage = '';
+
+  editMode = false;
+
+  propertyId: string = '';
 
   propertyForm: any;
 
   constructor(
     private fb: FormBuilder,
     private propertyService: PropertyService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute,
+    private cd: ChangeDetectorRef
   ) {
 
     this.propertyForm =
@@ -87,6 +98,60 @@ export class PropertyForm {
 
   }
 
+  ngOnInit(): void {
+
+    const id =
+      this.route.snapshot.paramMap.get('id');
+
+    if (id) {
+
+      this.editMode = true;
+
+      this.propertyId = id;
+
+      this.propertyService.getById(
+        this.propertyId
+      ).subscribe({
+
+        next: (data: any) => {
+
+          console.log(data);
+
+          this.propertyForm.setValue({
+
+            name:
+              data.name || '',
+
+            address:
+              data.address || '',
+
+            monthlyRent:
+              data.monthlyRent || 0,
+
+            status:
+              data.status || '',
+
+            description:
+              data.description || ''
+
+          });
+
+          this.cd.detectChanges();
+
+        },
+
+        error: (err) => {
+
+          console.error(err);
+
+        }
+
+      });
+
+    }
+
+  }
+
   onSubmit(): void {
 
     if (
@@ -101,32 +166,64 @@ export class PropertyForm {
 
     this.loading = true;
 
-    this.propertyService.create(
-      this.propertyForm.value
-    ).subscribe({
+    if (this.editMode) {
 
-      next: () => {
+      this.propertyService.update(
+        this.propertyId,
+        this.propertyForm.value
+      ).subscribe({
 
-        this.loading = false;
+        next: () => {
 
-        this.propertyForm.reset();
+          this.loading = false;
 
-        this.router.navigate([
-          '/properties'
-        ]);
+          this.router.navigate([
+            '/properties'
+          ]);
 
-      },
+        },
 
-      error: () => {
+        error: () => {
 
-        this.loading = false;
+          this.loading = false;
 
-        this.errorMessage =
-          'Failed to save property';
+          this.errorMessage =
+            'Failed to update property';
 
-      }
+        }
 
-    });
+      });
+
+    } else {
+
+      this.propertyService.create(
+        this.propertyForm.value
+      ).subscribe({
+
+        next: () => {
+
+          this.loading = false;
+
+          this.propertyForm.reset();
+
+          this.router.navigate([
+            '/properties'
+          ]);
+
+        },
+
+        error: () => {
+
+          this.loading = false;
+
+          this.errorMessage =
+            'Failed to save property';
+
+        }
+
+      });
+
+    }
 
   }
 

@@ -26,7 +26,8 @@ import {
   templateUrl: './property-list.html',
   styleUrls: ['./property-list.scss']
 })
-export class PropertyList implements OnInit {
+export class PropertyList
+implements OnInit {
 
   properties: any[] = [];
 
@@ -59,7 +60,7 @@ export class PropertyList implements OnInit {
   }
 
   deleteProperty(
-    id: number
+    id: number | string
   ): void {
 
     const confirmDelete =
